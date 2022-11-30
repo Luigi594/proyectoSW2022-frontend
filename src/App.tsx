@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Test from "@components/test";
+
+/** los nombres en las carpetas deben ser en minúscula, por ejemplo el test.tsx
+ * en minúscula, la function que vamos a exportar debe ser Test, el nombre tiene
+ * que ser diferente ahí porque sino da problema en los imports
+ */
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <Test />
+      </div>
     </div>
   );
 }
