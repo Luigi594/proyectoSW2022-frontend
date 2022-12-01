@@ -6,7 +6,13 @@ type Props = {};
 // luego ponen tsrfce y le dan tab para que cree el dommy del archivo 👍
 
 function Test({}: Props) {
-  return <div>test</div>;
+  return (
+    <>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+
+      <p className="text-xs text-slate-800">hola</p>
+    </>
+  );
 }
 
 export default Test;

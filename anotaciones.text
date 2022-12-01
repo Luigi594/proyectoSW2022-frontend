@@ -1,0 +1,6 @@
+paginas = login, sign in, principal, la de detalles (cuando se le da click a una pelicula)
+
+          la de admin para el crud de peliculas, la del crud para usuarios (las administrativas)
+          para agregar, modificar y listar los datos
+
+componentes = card para peliculas y los que surjan mas adelante
