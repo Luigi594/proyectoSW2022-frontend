@@ -1,5 +1,4 @@
-import React from "react";
-import Test from "@components/test";
+import Home from "@views/Home";
 
 /** los nombres en las carpetas deben ser en minúscula, por ejemplo el test.tsx
  * en minúscula, la function que vamos a exportar debe ser Test, el nombre tiene
@@ -10,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Test />
+        <Home />
       </div>
     </div>
   );

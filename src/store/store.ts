@@ -3,21 +3,21 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { appSlice } from "./Slices/appSlice";
 import { secSlice } from "./Slices/secSlice";
 import { securityApi } from "./Services/Security";
-import { cashFlowApi } from "./Services/CashFlow";
+import { peliculasApi } from "./Services/PeliculasHome";
 
-const preLoadedState = JSON.parse(localStorage.getItem('reduxState') || '{}');
+const preLoadedState = JSON.parse(localStorage.getItem("reduxState") || "{}");
 
 export const store = configureStore({
   reducer: {
     app: appSlice.reducer,
     sec: secSlice.reducer,
     [securityApi.reducerPath]: securityApi.reducer,
-    [cashFlowApi.reducerPath]: cashFlowApi.reducer,
+    [peliculasApi.reducerPath]: peliculasApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       securityApi.middleware,
-      cashFlowApi.middleware,
+      peliculasApi.middleware,
     ]),
   preloadedState: preLoadedState,
 });
