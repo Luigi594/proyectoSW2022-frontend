@@ -29,11 +29,13 @@ export const peliculasApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_BASE_URL}/movies`,
   }),
+  tagTypes: ["Movies"],
   endpoints: (builder) => ({
     getAllMovies: builder.query({
       query: ({ page = 1, items = 20 }) => ({
         url: `?page=${page}&items=${items}`,
       }),
+      providesTags: ["Movies"],
     }),
   }),
 });
