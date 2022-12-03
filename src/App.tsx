@@ -1,4 +1,5 @@
-import Home from "@views/Home";
+import Home from "@views/Home/Home";
+import Routes from "./Router";
 
 /** los nombres en las carpetas deben ser en minúscula, por ejemplo el test.tsx
  * en minúscula, la function que vamos a exportar debe ser Test, el nombre tiene
@@ -7,11 +8,7 @@ import Home from "@views/Home";
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        <Home />
-      </div>
-    </div>
+    <Routes />
   );
 }
 
