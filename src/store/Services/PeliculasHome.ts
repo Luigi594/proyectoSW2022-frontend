@@ -24,6 +24,10 @@ export interface IPeliculasResponse {
   items: IPeliculas[];
 }
 
+export interface IPeliculasFavoritas {
+  peliculas: IPeliculas[];
+}
+
 export const peliculasApi = createApi({
   reducerPath: "peliculasApi",
   baseQuery: fetchBaseQuery({
