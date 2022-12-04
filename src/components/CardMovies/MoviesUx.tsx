@@ -4,13 +4,14 @@ import { Spinner } from "flowbite-react";
 import { HiStar, HiOutlineHeart, HiPlay } from "react-icons/hi2";
 import { useDispatch } from "react-redux";
 import { setFavoriteMovie } from "@store/Slices/favoritesSlice";
+/* import { Pagination } from "flowbite-react"; */
 
 interface Props {
   error?: any;
   data?: IPeliculasResponse;
   isLoading?: boolean;
   addFavorite?: (favorite: boolean) => void;
-  changeLimitItems?: (page: number, limit: number) => void;
+  onPageChange?: (page: number) => void;
   viewDetailMovie?: (id: string) => void;
 }
 
@@ -19,7 +20,7 @@ function MoviesUx({
   data,
   isLoading,
   addFavorite = (favorite) => {},
-  changeLimitItems = (page, limit) => {},
+  onPageChange = (page) => {},
   viewDetailMovie = (id) => {},
 }: Props) {
   const dispatch = useDispatch();
@@ -56,11 +57,17 @@ function MoviesUx({
               key={item._id}
               className="max-w-sm rounded-lg shadow-sm shadow-sky-400 bg-slate-900 hover:shadow-sky-500
               hover:shadow-md transition-all ease-in-out">
-              <img
-                className="rounded-lg max-h-64 object-cover object-top w-full"
-                src={item.imagen}
-                alt="pelicula"
-              />
+              <span
+                className="cursor-pointer"
+                onClick={(e: React.MouseEvent<HTMLSpanElement>) =>
+                  viewDetailMovie(item._id)
+                }>
+                <img
+                  className="rounded-lg max-h-64 object-cover object-top w-full"
+                  src={item.imagen}
+                  alt="pelicula"
+                />
+              </span>
               <div className="p-5 space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col items-center gap-1">
