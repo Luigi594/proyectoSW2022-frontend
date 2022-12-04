@@ -1,9 +1,10 @@
 import { HiBars3, HiHeart, HiHome } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 const items = [
   {
     id: 1,
-    href: "#",
+    href: "/home",
     className:
       "text-md block py-2 pr-4 pl-3 text-gray-200 border-b border-gray-700 -md:border-0 md:hover:text-blue-600 md:p-0 md:hover:text-blue-500 md:text-lg hover:text-blue-500",
     label: "Home",
@@ -11,7 +12,7 @@ const items = [
   },
   {
     id: 2,
-    href: "#",
+    href: "/favorites",
     className:
       "text-md block py-2 pr-4 pl-3 text-gray-200 border-b border-gray-700 -md:border-0 md:hover:text-blue-600 md:p-0 md:hover:text-blue-500 md:text-lg hover:text-blue-500",
     label: "Mis Favoritos",
@@ -30,7 +31,7 @@ function navbar() {
   return (
     <nav className="border-gray-200 px-2 sm:px-4 py-2.5 rounded bg-gray-900">
       <div className="container p-5 flex flex-wrap items-center justify-between mx-auto">
-        <a href="https://flowbite.com/" className="flex items-center">
+        <Link to={"/home"} className="flex items-center">
           {/* <img
             src="https://flowbite.com/docs/images/logo.svg"
             className="h-6 mr-3 sm:h-9"
@@ -39,7 +40,7 @@ function navbar() {
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
             Un logo recio aquí
           </span>
-        </a>
+        </Link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
@@ -57,9 +58,9 @@ function navbar() {
                     {item.icon}
                   </span>
 
-                  <a href={item.href} className={item.className}>
+                  <Link to={item.href} className={item.className}>
                     {item.label}
-                  </a>
+                  </Link>
                 </span>
               </li>
             ))}
