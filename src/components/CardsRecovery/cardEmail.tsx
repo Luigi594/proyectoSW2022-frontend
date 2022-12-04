@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setSecData } from '@store/Slices/secSlice';
 import { useSentMutation } from '@store/Services/Security';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function SentEmailCard()
 {
@@ -25,7 +26,25 @@ function SentEmailCard()
                 console.log(dispatch(setSecData(data.data)));
                 localStorage.setItem('email', email);
                 localStorage.setItem('pin', pin.toString());
-                Navigator('/verifyPin');
+                Swal.fire({
+                    title: "Excelente!",
+                    text: "Te hemos enviado un correo con un código de verificación",
+                    icon: "success",
+                    confirmButtonText: "Aceptar",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Navigator('/verifyPin');
+                    }
+                });
+            }
+            else
+            {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Verifique los datos ingresados",
+                    icon: "error",
+                    confirmButtonText: "Aceptar",
+                })
             }
         });
 

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { setSecData } from "@store/Slices/secSlice";
 import { useLoginMutation } from "@store/Services/Security";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function LoginCard()
 {
@@ -28,7 +29,29 @@ function LoginCard()
             const data  = result;
             if ("data" in data) {
                 console.log(dispatch(setSecData(data.data)));
+                Swal.fire({
+                    title: "Bienvenido",
+                    text: "Iniciaste sesión correctamente",
+                    icon: "success",
+                    confirmButtonText: "Aceptar",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Navigator("/");
+                    }
+                });
             }
+            else {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Usuario o contraseña incorrectos",
+                        icon: "error",
+                        confirmButtonText: "Ok",
+                    })
+
+            
+            }
+            
+            
         });
 
     }; 
@@ -86,6 +109,7 @@ function LoginCard()
                                     />
                                 </div>
                             </div>
+                            
                             <div>
                                 <button
                                     type="submit"       

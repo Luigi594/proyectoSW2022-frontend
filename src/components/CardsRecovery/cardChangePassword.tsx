@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useChangepasswordMutation } from '@store/Services/Security';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function ChangePasswordCard() 
 {
@@ -20,11 +21,38 @@ function ChangePasswordCard()
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const email = localStorage.getItem('email');
-        changepassword({password, confirmpassword, email}).then((result) => {
-            console.log(result);
-            localStorage.removeItem('email');
-            localStorage.removeItem('pin');
-            Navigator('/login');
+        changepassword({password, confirmpassword, email}).then((resultado) => {
+            console.log(resultado);
+            if("data" in resultado){
+                Swal.fire({
+                    title: "Contraseña cambiada",
+                    text: "La contraseña se ha cambiado correctamente",
+                    icon: "success",
+                    confirmButtonText: "Aceptar",
+                }).then((result) => {
+                    localStorage.removeItem('email');
+                    localStorage.removeItem('pin');
+                    Navigator('/login');    
+                });
+            }
+            else if(password != confirmpassword)
+            {
+                Swal.fire({
+                    title: "Error",
+                    text: "Las contraseñas no coinciden",
+                    icon: "error",
+                    confirmButtonText: "Aceptar",
+                })
+            }
+            else
+            {
+                Swal.fire({
+                    title: "Error",
+                    text: "No se pudo cambiar la contraseña",
+                    icon: "error",
+                    confirmButtonText: "Aceptar",
+                });
+            }
         });
     };
 

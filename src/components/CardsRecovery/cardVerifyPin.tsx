@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function VerifyPin()
 {
@@ -16,9 +17,22 @@ function VerifyPin()
         const pinEnviado = localStorage.getItem('pin');
         if (pinEnviado === pin) {
             console.log('Correcto');
-            Navigator('/changePassword');
+            Swal.fire({
+                title: "Excelente!",
+                text: "Código de verificación correcto",
+                icon: "success",
+                confirmButtonText: "Aceptar",
+            }).then((result) => {
+                Navigator('/changePassword');
+            });
         } else {
             console.log('Incorrecto');
+            Swal.fire({
+                title: "Error",
+                text: "Código de verificación incorrecto",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
         }
     };
 
