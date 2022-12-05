@@ -9,6 +9,7 @@ import Favorites from "@components/CardMovies/Favorites";
 import Navbar from "@components/navbar";
 import NotFound from "@views/NotFound";
 import DetailsMovie from "@components/DetailsMovie";
+import MovieList from "@views/MovieList";
 
 const Routes = () => {
   return (
@@ -18,6 +19,7 @@ const Routes = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/detail/:id" element={<DetailsMovie />} />
+        <Route path="/movielist" element={<MovieList />} />
         <Route path="*" element={<NotFound />} />
       </Switch>
     </Router>
