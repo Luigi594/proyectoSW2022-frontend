@@ -2,6 +2,7 @@ import { IPeliculas, IPeliculasResponse } from "@store/Services/PeliculasHome";
 import { Table } from "flowbite-react";
 import React from "react";
 import { HiPencilSquare, HiTrash } from "react-icons/hi2";
+import Pagination from "@components/pagination";
 
 interface Props {
   data?: IPeliculasResponse;
@@ -82,6 +83,16 @@ function MovieListUx({
             ))}
         </Table.Body>
       </Table>
+
+      <div className="mt-14 flex items-center justify-center text-center">
+        <Pagination
+          currentPage={data?.page || 1}
+          totalPages={data?.totalPages || 0}
+          onPageChange={(page) => {
+            onPageChange(page);
+          }}
+        />
+      </div>
     </div>
   );
 }
