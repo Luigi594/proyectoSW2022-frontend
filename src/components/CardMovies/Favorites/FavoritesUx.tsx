@@ -28,15 +28,16 @@ function FavoritesUx({ favorites }: Props) {
             <span className="text-white text-2xl cursor-pointer">
               <HiHeart />
             </span>
+
+            <span className="text-white text-2xl cursor-pointer">
+              <HiPlay />
+            </span>
           </div>
 
           <div className="flex items-center justify-between">
             <h5 className="mb-2 text-xl font-bold tracking-tight text-white">
               {favorites?.titulo}
             </h5>
-            <span className="text-white text-2xl cursor-pointer">
-              <HiPlay />
-            </span>
           </div>
         </div>
       </div>

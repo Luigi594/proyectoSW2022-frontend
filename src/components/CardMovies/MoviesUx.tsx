@@ -4,7 +4,7 @@ import { Spinner } from "flowbite-react";
 import { HiStar, HiOutlineHeart, HiPlay } from "react-icons/hi2";
 import { useDispatch } from "react-redux";
 import { setFavoriteMovie } from "@store/Slices/favoritesSlice";
-/* import { Pagination } from "flowbite-react"; */
+import Pagination from "@components/pagination";
 
 interface Props {
   error?: any;
@@ -105,6 +105,16 @@ function MoviesUx({
               </div>
             </div>
           ))}
+      </div>
+
+      <div className="mt-14 flex items-center justify-center text-center">
+        <Pagination
+          currentPage={data?.page || 1}
+          totalPages={data?.totalPages || 0}
+          onPageChange={(page) => {
+            onPageChange(page);
+          }}
+        />
       </div>
     </div>
   );
