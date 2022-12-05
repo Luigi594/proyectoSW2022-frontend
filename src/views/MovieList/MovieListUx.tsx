@@ -10,6 +10,7 @@ interface Props {
   onPageChange?: (page: number) => void;
   viewDetailMovie?: (id: string) => void;
   deleteMovie?: (id: string) => void;
+  showModal?: (valor: boolean) => void;
 }
 
 function MovieListUx({
@@ -18,6 +19,7 @@ function MovieListUx({
   onPageChange = (page) => {},
   viewDetailMovie = (id) => {},
   deleteMovie = (id) => {},
+  showModal = (valor) => {},
 }: Props) {
   const tituloTabla = [
     {
@@ -33,6 +35,11 @@ function MovieListUx({
       texto: "Puntuación",
     },
   ];
+
+  const handleClick = (id: string) => {
+    deleteMovie(id);
+    showModal(true);
+  };
 
   return (
     <div>
@@ -72,7 +79,7 @@ function MovieListUx({
 
                     <span
                       onClick={(e: React.MouseEvent<HTMLSpanElement>) =>
-                        deleteMovie(item._id)
+                        handleClick(item._id)
                       }
                       className="font-medium hover:underline text-sky-500 cursor-pointer">
                       <HiTrash className="w-5 h-5" />
