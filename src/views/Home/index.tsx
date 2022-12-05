@@ -1,8 +1,10 @@
+import User from "@views/Users";
+
 
 const Home = () => {
   return (
     
-      <h1>Hola Mundo</h1>
+      <User></User>
    
   );
 }

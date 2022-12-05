@@ -25,14 +25,7 @@ export const securityApi = createApi({
         body: credentials,
      })
     }),
-    update: builder.mutation({
-    query: (credentials) => ({
-      url: `update/${credentials.id}`,
-      method: 'PUT', 
-      body: credentials
-    })
-    }),
   }),
 });
 
-export const {useLoginMutation, useSigninMutation, useUpdateMutation} = securityApi;
+export const {useLoginMutation, useSigninMutation} = securityApi;
