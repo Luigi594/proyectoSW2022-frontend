@@ -42,7 +42,7 @@ export const peliculasApi = createApi({
       providesTags: ["Movies"],
     }),
     getMovieById: builder.query({
-      query: (id: string) => `byindex/${id}`,
+      query: (id: string) => `byid/${id}`,
       providesTags: ["Movies"],
     }),
   }),
