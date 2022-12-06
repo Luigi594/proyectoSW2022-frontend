@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useUpdateMutation, useMovieByIdQuery } from "@store/Services/agregarPeliculas";
 import ModificarMoviesUx from "./ModificarMoviesUx";
 import { useNavigate, useParams } from "react-router-dom";
+import {useEffect} from "react";
 
 export interface IMovieNew{
   _id?: string;
@@ -39,6 +40,8 @@ const ModificarMovies = () => {
     trailer: data?.trailer as string,// Link de YT
     status: data?.status as string,
   })
+
+  useEffect(() => {setForm(form)}, [form])
   
   const[update ,{ isLoading, error}]=useUpdateMutation();
 
