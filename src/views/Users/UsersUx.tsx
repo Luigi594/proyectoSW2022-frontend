@@ -15,6 +15,7 @@ interface IUsersUxProps {
     isLoading?: boolean;
     changePageLimit?: (page: number, limit: number)=>void;
     viewDetailClick?: (id:string)=> void;
+    viewUpdateClick?: (id:string)=> void;
     showMyModal: boolean;
      setShowMyModal: ((showMyModal: boolean) => void)
 }
@@ -36,6 +37,7 @@ const UserUx= ({
     isLoading, 
     changePageLimit= (p,l)=>{console.log("PG", {p,l})},
     viewDetailClick= (id) => {},
+    viewUpdateClick= (id)=>{},
     showMyModal ,
     setShowMyModal,
 }: IUsersUxProps) => {
@@ -47,10 +49,9 @@ const UserUx= ({
         </div>
        <section className='flex flex-row space-x-6 m-2 flex-wrap justify-center'>
        {isLoading && <div>Loading...</div>}
-       {error}
        {data && data.items.map((o:IUser)=>{
             return (
-               CardUser(o, viewDetailClick, setShowMyModal, showMyModal)
+               CardUser(o, viewDetailClick, viewUpdateClick)
             )
        })}
        </section>

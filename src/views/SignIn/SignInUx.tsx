@@ -1,6 +1,18 @@
 import FloatingInput from "@components/inputFloating";
+import { typeImplementation } from "@testing-library/user-event/dist/type/typeImplementation";
+import { IError } from "@views/UsersUpdate/UsersUpdateUx";
+import e from "express";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { json } from "stream/consumers";
+/*export interface IError {
+    value: string,
+    m: string,
+    locatmsg: string,
+    paraion: string
+}*/
 export interface IloginUxProps {
   name: string;
   setName: (name: string) => void;
@@ -18,6 +30,16 @@ export interface IloginUxProps {
   handleClick: () => void;
 }
 
+const InvalidatePass = (result: boolean) => {
+  if (result == false) {
+    return (
+      <p className="-mt-2 mb-2 ml-5 text-xs text-red-600 dark:text-red-500">
+        Contraseñas no coinciden
+      </p>
+    );
+  }
+};
+
 const SignInUx = ({
   name,
   setName,
@@ -34,6 +56,15 @@ const SignInUx = ({
   error,
   handleClick,
 }: IloginUxProps) => {
+  let result = true;
+  if (error == undefined) {
+    error = [];
+  }
+
+  if (password != passwordConfirm) {
+    result = false;
+  }
+
   return (
     <div className="z-40 max-h-screen flex justify-center  -translate-y-6 items-center bg-gradient-to-br from-purple-600 to-blue-500 ">
       <form>
@@ -50,6 +81,15 @@ const SignInUx = ({
             onChange={(e) => setName(e.target.value)}
             type="text"
           />
+          {error.data?.errors.map((o: IError) => {
+            if (o.param == "name") {
+              return (
+                <p className="-mt-2 mb-2 ml-5 text-xs text-red-600 dark:text-red-500">
+                  {o.msg}
+                </p>
+              );
+            }
+          })}
 
           <FloatingInput
             name="email"
@@ -60,7 +100,15 @@ const SignInUx = ({
             type="email"
           />
 
-          {}
+          {error.data?.errors.map((o: IError) => {
+            if (o.param == "email") {
+              return (
+                <p className="-mt-2 mb-2 ml-5 text-xs text-red-600 dark:text-red-500">
+                  {o.msg}
+                </p>
+              );
+            }
+          })}
 
           <FloatingInput
             name="username"
@@ -70,23 +118,50 @@ const SignInUx = ({
             onChange={(e) => setUsername(e.target.value)}
             type="text"
           />
+
+          {error.data?.errors.map((o: IError) => {
+            if (o.param == "username") {
+              return (
+                <p className="-mt-2 mb-2 ml-5 text-xs text-red-600 dark:text-red-500">
+                  {o.msg}
+                </p>
+              );
+            }
+          })}
+
           <div className="flex flex-row">
-            <FloatingInput
-              name="Password"
-              labelText="Password"
-              value={password}
-              error={error}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-            />
-            <FloatingInput
-              name="Confirm Password"
-              labelText="Confirm Password"
-              value={passwordConfirm}
-              error={error}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-              type="password"
-            />
+            <div className="flex flex-col">
+              <FloatingInput
+                name="Password"
+                labelText="Password"
+                value={password}
+                error={error}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+              />
+
+              {error.data?.errors.map((o: IError) => {
+                if (o.param == "password") {
+                  return (
+                    <p className="-mt-2 mb-2 ml-5 text-xs text-red-600 dark:text-red-500">
+                      {o.msg}
+                    </p>
+                  );
+                }
+              })}
+            </div>
+
+            <div className="flex flex-col">
+              <FloatingInput
+                name="Confirm Password"
+                labelText="Confirm Password"
+                value={passwordConfirm}
+                error={error}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+                type="password"
+              />
+              {InvalidatePass(result)}
+            </div>
           </div>
           <FloatingInput
             name="date"
@@ -101,7 +176,9 @@ const SignInUx = ({
             onClick={async (e) => {
               e.preventDefault();
               e.stopPropagation();
-              handleClick();
+              if (result == true) {
+                handleClick();
+              }
             }}
             className="text-white place-self-end bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
             Sign In
