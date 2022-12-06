@@ -22,11 +22,12 @@ export const usersApi = createApi({
     tagTypes: ["Users"],
   endpoints: (builder) => ({
     update: builder.mutation({
-        query: (id:string, ...credentials) => ({
-          url: `/update/${id}`,
+        query: (credentials) => ({
+          url: `/update/${credentials.id}`,
           method: 'PUT', 
           body: credentials
-        })
+        }),
+          invalidatesTags:["Users"]
         }),
     allUsers: builder.query({
         query: ({page=1, items=2})=> ({
@@ -35,9 +36,7 @@ export const usersApi = createApi({
         providesTags: ["Users"],
     }),
     byId: builder.query({
-      query: (id: string) => ({
-        url: `/byid/${id}`
-      }),
+      query: (id: string) =>  `byid/${id}`,
       providesTags: ["Users"],
     }),
     userByEmail:builder.query({
