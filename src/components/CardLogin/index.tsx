@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { setSecData } from "@store/Slices/secSlice";
 import { useLoginMutation } from "@store/Services/Security";
 import { useNavigate } from "react-router-dom";
+import  { HiUserCircle } from "react-icons/hi2";
 import Swal from "sweetalert2";
 
 function LoginCard()
@@ -40,21 +41,18 @@ function LoginCard()
                     }
                 });
             }
-            else {
+            else{
                     Swal.fire({
                         title: "Error",
                         text: "Usuario o contraseña incorrectos",
                         icon: "error",
                         confirmButtonText: "Ok",
                     })
-
-            
-            }
-            
-            
+            } 
         });
 
     }; 
+
 
 
     return (
@@ -130,6 +128,25 @@ function LoginCard()
                             <span className="w-px h-5 bg-gray-300 dark:bg-gray-600" aria-hidden="true" />
                         </div>
                     </div>
+                </div>
+                <div className="flex items-center justify-center mt-6">
+                    <span className="w-full border-b dark:border-gray-600 md:w-1/3" />
+                    <a
+                        href="#"
+                        className="inline-block px-3 py-1 text-xs font-medium text-center text-gray-500 uppercase bg-white rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-400 hover:shadow-lg"
+                    >
+                        O
+                    </a>
+                    <span className="w-full border-b dark:border-gray-600 md:w-1/3" />
+                </div>
+                <div className="flex items-center justify-center mt-4">
+                    <a
+                        className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-black bg-white border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        href="http://localhost:3001/auth/google"
+                    >
+                        <HiUserCircle className="w-5 h-5 mr-2" />
+                        <span>Ingresa con Google</span>
+                    </a>
                 </div>
             </div>
         </div>
