@@ -1,34 +1,50 @@
+import AgregarMovieUx from "./AgregarMoviesUx";
+import { useNewMovieMutation, INewMovie } from "@store/Services/agregarPeliculas";
 import { useState } from "react";
-import { useGetAllMoviesQuery } from "@store/Services/PeliculasHome";
-import AgregarMoviesUx from "./AgregarMoviesUx";
 import { useNavigate } from "react-router-dom";
 
-function AgregarMoviesux() {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+const MovieNew = () => {
+  const Navigate = useNavigate();
 
-  const changeItem = (pageItem: number, limitItem: number) => {
-    setPage(pageItem);
-    setLimit(limitItem);
-  };
-
-  const { data, isLoading, error } = useGetAllMoviesQuery({
-    page,
-    items: limit,
+  const [form, setForm] = useState<INewMovie>({
+    imagen:"",
+    titulo: "",
+    duracion: "",
+    sinopsis: "",
+    generos: "Terror",
+    rating: "G",
+    fecha_lanzamiento: new Date(),
+    director: "",
+    actores: "",
+    puntuaciones: 0, // Rating de Usuarios
+    trailer: "", // Link de YT
+    status: "ACT",
   });
-
-  const navigate = useNavigate();
-
+  const [newMovie, { isLoading, error }] = useNewMovieMutation();
+  
+  const onChangeHandler = (name:string, value:string|number) => {
+    setForm({ ...form, [name]: value });
+  }
+  const onSubmitHandler = async () => {
+    try {
+      const data = await newMovie(form).unwrap();
+      console.log(data);
+      Navigate("/movie");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const onCancelHandler = () => {
+    console.log('cancel');
+    Navigate("/movie");
+  }
   return (
-    <div className="relative p-10 max-w-7x1 mx-auto">
-    <AgregarMoviesUx
-      error={error}
-      data={data}
-      isLoading={isLoading}
-      changeItem={changeItem}
+    <AgregarMovieUx
+      form={form}
+      onChangeHandler={onChangeHandler}
+      onSubmitHandler={onSubmitHandler}
+      onCancelHandler={onCancelHandler}
     />
-    </div>
   );
-}
-
-export default AgregarMoviesux;
+};
+export default MovieNew;

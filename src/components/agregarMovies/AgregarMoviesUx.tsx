@@ -1,14 +1,20 @@
-import { IPeliculasResponse } from "@store/Services/PeliculasHome";
-import { HiArrowLeftCircle, HiArrowRightCircle } from "react-icons/hi2";
-
-type Props = {
-  error?: any;
-  data?: IPeliculasResponse;
-  isLoading?: boolean;
-  changeItem?: (page: number, limit: number) => void;
-};
-
-function AgregarMoviesux({ error, data, isLoading }: Props) {
+//import Page from "@components/Page";
+//import { DateField, Field, FieldSelect } from "@components/InputField";
+//import ActionField from "@components/ActionField";
+//import { PrimaryButton, Button } from "@components/Buttons";
+import { INewMovie } from "@store/Services/agregarPeliculas";
+export interface AgregarMoviesUx {
+  form: INewMovie;
+  onChangeHandler: (name: string, value: string | number) => void;
+  onSubmitHandler: () => void;
+  onCancelHandler: () => void;
+}
+const AgregarMoviesUx = ({
+  form,
+  onChangeHandler,
+  onSubmitHandler,
+  onCancelHandler,
+}: AgregarMoviesUx) => {
   return (
     <div className="flex items-center justify-center p-12">
         
@@ -22,6 +28,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
         <div className="mb-8">
           <input type="file" name="file" id="file" className="sr-only" />
           <label
+            //for="file"
             className="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
           >
             <div>
@@ -44,6 +51,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
       
       <div className="mb-5">
         <label
+          //for="name"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Titulo Pelicula
@@ -58,7 +66,10 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
       </div>
 
       <div className="mb-5">
-        <label className="mb-3 block text-base font-medium text-[#07074D]">
+        <label
+          //for="duración"
+          className="mb-3 block text-base font-medium text-[#07074D]"
+        >
           Duracion
         </label>
         <input
@@ -72,12 +83,13 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
 
       <div className="mb-5">
         <label
+          //for="message"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Sinopsis
         </label>
         <textarea
-        //rows="4"
+          //rows="4"
           name="message"
           id="message"
           placeholder="Ingrese la sinopsis de la pelicula"
@@ -87,6 +99,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
 
       <div className="mb-5">
         <label
+        //for="Genero"
         className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Genero
@@ -105,6 +118,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
 
       <div className="mb-5">
         <label
+        //for="rating"
         className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Rating
@@ -123,6 +137,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
 
       <div className="mb-5">
         <label
+          //for="fecha_lanzamiento"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Fecha Lanzamiento
@@ -137,6 +152,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
 
       <div className="mb-5">
         <label
+          //for="director"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Director
@@ -152,6 +168,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
 
       <div className="mb-5">
         <label
+          //for="actores"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Actores
@@ -167,6 +184,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
 
       <div className="mb-5">
         <label
+          //for="guest"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Puntuacion General de la pelicula
@@ -183,6 +201,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
 
       <div className="mb-5">
         <label
+          //for="trailes"
           className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Trailer
@@ -198,6 +217,7 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
 
       <div className="mb-5">
         <label
+        //for="status"
         className="mb-3 block text-base font-medium text-[#07074D]"
         >
           Estado del trailer
@@ -224,6 +244,6 @@ function AgregarMoviesux({ error, data, isLoading }: Props) {
   </div>
 </div>
   );
-}
+};
 
-export default AgregarMoviesux;
+export default AgregarMoviesUx;
