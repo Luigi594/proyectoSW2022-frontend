@@ -18,6 +18,8 @@ import SentEmail from "@views/Login/sentEmail";
 import VerifyPin from "@views/Login/verifyPin";
 import ChangePassword from "@views/Login/changePassword";
 import PrivateRoute from "@components/Private/privateRoute";
+import MovieNew from "@components/agregarMovies";
+import ModificarMoviesux from "@components/modificarMovies";
 
 const Routes = () => {
   return (
@@ -89,6 +91,24 @@ const Routes = () => {
           element={
             <PrivateRoute allowedRoles={["admin"]}>
               <UserUpdate />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/agg"
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <MovieNew />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/UpdateMovie/:id"
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <ModificarMoviesux />
             </PrivateRoute>
           }
         />

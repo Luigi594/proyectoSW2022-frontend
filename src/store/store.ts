@@ -6,6 +6,7 @@ import { securityApi } from "./Services/Security";
 import { peliculasApi } from "./Services/PeliculasHome";
 import { favoriteSlice } from "./Slices/favoritesSlice";
 import { usersApi } from "./Services/Users";
+import { MoviesApi } from "./Services/agregarPeliculas";
 
 const preLoadedState = JSON.parse(localStorage.getItem("reduxState") || "{}");
 
@@ -17,12 +18,14 @@ export const store = configureStore({
     [securityApi.reducerPath]: securityApi.reducer,
     [peliculasApi.reducerPath]: peliculasApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
+    [MoviesApi.reducerPath]: MoviesApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       securityApi.middleware,
       peliculasApi.middleware,
       usersApi.middleware,
+      MoviesApi.middleware,
     ]),
   preloadedState: preLoadedState,
 });
