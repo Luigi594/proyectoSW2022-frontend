@@ -13,7 +13,7 @@ export interface IPeliculas {
   puntuaciones: number; // Rating de Usuarios
   trailer: string; // Link de YT
   status: string;
-  _id?: string;
+  _id: string;
 }
 
 export interface IPeliculasResponse {
@@ -24,6 +24,10 @@ export interface IPeliculasResponse {
   items: IPeliculas[];
 }
 
+export interface IPeliculasFavoritas {
+  peliculas: IPeliculas[];
+}
+
 export const peliculasApi = createApi({
   reducerPath: "peliculasApi",
   baseQuery: fetchBaseQuery({
@@ -32,12 +36,16 @@ export const peliculasApi = createApi({
   tagTypes: ["Movies"],
   endpoints: (builder) => ({
     getAllMovies: builder.query({
-      query: ({ page = 1, items = 20 }) => ({
+      query: ({ page = 1, items = 15 }) => ({
         url: `?page=${page}&items=${items}`,
       }),
+      providesTags: ["Movies"],
+    }),
+    getMovieById: builder.query({
+      query: (id: string) => `byid/${id}`,
       providesTags: ["Movies"],
     }),
   }),
 });
 
-export const { useGetAllMoviesQuery } = peliculasApi;
+export const { useGetAllMoviesQuery, useGetMovieByIdQuery } = peliculasApi;

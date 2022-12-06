@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IPeliculas } from "@store/Services/PeliculasHome";
+import { RootState } from "@store/store";
 
 const initialState: IPeliculas = {
   imagen: "",
@@ -36,20 +37,9 @@ export const favoriteSlice = createSlice({
       state.status = action.payload.status;
       state._id = action.payload._id;
     },
-    resetFavorite: (state) => {
-      state.imagen = "";
-      state.titulo = "";
-      state.duracion = "";
-      state.sinopsis = "";
-      state.generos = "";
-      state.rating = "";
-      state.fecha_lanzamiento = "";
-      state.director = "";
-      state.actores = "";
-      state.puntuaciones = 0;
-      state.trailer = "";
-      state.status = "";
-      state._id = "";
-    },
   },
 });
+
+export const { setFavoriteMovie } = favoriteSlice.actions;
+export const selectFavorites = (state: RootState) => state.favorite;
+export default favoriteSlice.reducer;
