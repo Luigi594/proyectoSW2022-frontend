@@ -13,6 +13,10 @@ import MovieList from "@views/MovieList";
 import UserDetail from "@views/UsersDetail/index";
 import UserUpdate from "@views/UsersUpdate";
 import User from "@views/Users";
+import Login from "@views/Login/login";
+import SentEmail from "@views/Login/sentEmail";
+import VerifyPin from "@views/Login/verifyPin";
+import ChangePassword from "@views/Login/changePassword";
 
 const Routes = () => {
   return (
@@ -29,6 +33,11 @@ const Routes = () => {
         <Route path="/userDashboard/detail/:id" element={<UserDetail />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/userDashboard/update/:id" element={<UserUpdate />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sentEmail" element={<SentEmail />} />
+        <Route path="/verifyPin" element={<VerifyPin />} />
+        <Route path="/changePassword" element={<ChangePassword />} />
       </Switch>
     </Router>
   );

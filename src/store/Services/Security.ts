@@ -25,7 +25,21 @@ export const securityApi = createApi({
         body: credentials,
      })
     }),
+    sent: builder.mutation({
+      query: (credentials) => ({
+        url: 'recoverpassword',
+        method: 'POST',
+        body: credentials,
+      })
+    }),
+    changepassword: builder.mutation({
+      query: (credentials) => ({
+        url: 'changepassword',
+        method: 'POST',
+        body: credentials,
+      })
+    }),
   }),
 });
 
-export const {useLoginMutation, useSigninMutation} = securityApi;
+export const {useLoginMutation, useSigninMutation, useSentMutation, useChangepasswordMutation} = securityApi;
