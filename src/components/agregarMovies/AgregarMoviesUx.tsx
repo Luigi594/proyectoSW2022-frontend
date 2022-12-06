@@ -25,9 +25,13 @@ const AgregarMoviesUx = ({
         </label>
         <input
           type="text"
-          name="name"
-          id="name"
+          name="titulo"
+          id="titulo"
           placeholder="Black Panther: Wakanda Forever"
+          value={form.titulo}
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}
           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
@@ -43,6 +47,10 @@ const AgregarMoviesUx = ({
           type="text"
           name="imagen"
           id="imagen"
+          value={form.imagen}
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}
           placeholder="Link Imagen"
           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
@@ -59,6 +67,10 @@ const AgregarMoviesUx = ({
           type="text"
           name="duracion"
           id="duracion"
+          value={form.duracion}
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}
           placeholder="2h 41min"
           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
@@ -73,8 +85,12 @@ const AgregarMoviesUx = ({
         </label>
         <textarea
           //rows="4"
-          name="message"
-          id="message"
+          name="sinopsis"
+          id="sinopsis"
+          value={form.sinopsis}
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}
           placeholder="Ingrese la sinopsis de la pelicula"
           className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         ></textarea>
@@ -113,6 +129,7 @@ const AgregarMoviesUx = ({
           <option>PG-13</option>
           <option>R</option>
         </select>
+        value={form.rating}
         <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
           <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
@@ -144,6 +161,10 @@ const AgregarMoviesUx = ({
           type="text"
           name="director"
           id="director"
+          value={form.director}
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}
           placeholder="Ryan Coogler"
           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
@@ -158,8 +179,12 @@ const AgregarMoviesUx = ({
         </label>
         <textarea
           //rows="4"
-          name="Actores"
-          id="Actores"
+          name="actores"
+          id="actores"
+          value={form.actores}
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}
           placeholder="Chadwick Boseman, Letitia Wright, Michael Jordan"
           className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         ></textarea>
@@ -174,10 +199,15 @@ const AgregarMoviesUx = ({
         </label>
         <input
           type="number"
-          name="guest"
-          id="guest"
+          name="puntuaciones"
+          id="puntuaciones"
+          value={String(form.puntuaciones)}
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}
           placeholder="5"
           min="0"
+          max="10"
           className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
@@ -193,6 +223,10 @@ const AgregarMoviesUx = ({
           type="text"
           name="trailes"
           id="trailer"
+          value={form.trailer}
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}
           placeholder="Link Trailes"
           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
