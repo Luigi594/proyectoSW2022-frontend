@@ -36,7 +36,7 @@ function MovieList() {
           isLoading={isLoading}
           onPageChange={onPageChange}
           viewDetailMovie={(id) => {
-            navigate(`/detail/${id}`);
+            navigate(`/UpdateMovie/${id}`);
           }}
           deleteMovie={(id) => {
             console.log(id);

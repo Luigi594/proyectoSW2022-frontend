@@ -55,6 +55,14 @@ export const MoviesApi = createApi({
   }),
   tagTypes: ["Movie"],
   endpoints: (builder) => ({
+    update: builder.mutation({
+        query: (credentials) => ({
+          url: `/update/${credentials._id}`,
+          method: 'PUT', 
+          body: credentials
+        }),
+          invalidatesTags:["Movie"]
+        }),
     allMovie: builder.query({
       query: ({page = 1, items = 10}) => ({
         url: `?page=${page}&items=${items}`,
@@ -62,7 +70,7 @@ export const MoviesApi = createApi({
       providesTags: ["Movie"]
     }),
     MovieById: builder.query({
-      query: (id: string) => `byindex/${id}`,
+      query: (id: string) => `/byid/${id}`,
       providesTags: ["Movie"]
     }),
     newMovie: builder.mutation({
@@ -78,4 +86,4 @@ export const MoviesApi = createApi({
   })
 });
 
-export const { useAllMovieQuery, useMovieByIdQuery, useNewMovieMutation } = MoviesApi;
+export const { useUpdateMutation ,useAllMovieQuery, useMovieByIdQuery, useNewMovieMutation } = MoviesApi;

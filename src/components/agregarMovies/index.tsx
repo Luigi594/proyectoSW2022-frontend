@@ -29,14 +29,14 @@ const MovieNew = () => {
     try {
       const data = await newMovie(form).unwrap();
       console.log(form);
-      Navigate("/Home");
+      Navigate("/movielist");
     } catch (error) {
       console.log(error);
     }
   }
   const onCancelHandler = () => {
     console.log('cancel');
-    Navigate("/Home");
+    Navigate("/movielist");
   }
   return (
     <AgregarMovieUx

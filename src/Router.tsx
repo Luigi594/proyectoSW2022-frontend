@@ -12,6 +12,7 @@ import NotFound from "@views/NotFound";
 import DetailsMovie from "@components/DetailsMovie";
 import MovieList from "@views/MovieList";
 import MovieNew from "@components/agregarMovies";
+import ModificarMoviesux from "@components/modificarMovies";
 
 const Routes = () => {
   return (
@@ -20,13 +21,14 @@ const Routes = () => {
       <Switch>
         <Route path="/home" element={<Home />} />
         <Route path="/agg" element={<MovieNew />}/>
+        <Route path="/UpdateMovie/:id" element={<ModificarMoviesux/>}/>
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/detail/:id" element={<DetailsMovie />} />
         <Route path="/movielist" element={<MovieList />} />
         <Route path="*" element={<NotFound />} />
       </Switch>
     </Router>
-  );
+  )
 };
 
 export default Routes;
