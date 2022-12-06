@@ -3,7 +3,7 @@ import { IPeliculas, IPeliculasResponse } from "@store/Services/PeliculasHome";
 import { Spinner } from "flowbite-react";
 import { HiStar, HiOutlineHeart, HiPlay } from "react-icons/hi2";
 import { useDispatch } from "react-redux";
-import { setFavoriteMovie } from "@store/Slices/favoritesSlice";
+import { IPelicula, setFavoriteMovie } from "@store/Slices/favoritesSlice";
 import Pagination from "@components/pagination";
 
 interface Props {
@@ -34,7 +34,7 @@ function MoviesUx({
     return texto.slice(0, numeroTruncar) + "...";
   };
 
-  const handleMovieSelected = (data: IPeliculas) => {
+  const handleMovieSelected = (data: IPelicula) => {
     dispatch(setFavoriteMovie(data));
     addFavorite(true);
   };
@@ -81,7 +81,7 @@ function MoviesUx({
                     <span
                       className="text-white text-2xl cursor-pointer"
                       onClick={(e: React.MouseEvent<HTMLSpanElement>) =>
-                        handleMovieSelected(item)
+                        handleMovieSelected(item as IPelicula)
                       }>
                       <HiOutlineHeart />
                     </span>

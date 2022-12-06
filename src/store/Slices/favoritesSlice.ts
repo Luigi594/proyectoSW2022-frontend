@@ -1,45 +1,61 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPeliculas } from "@store/Services/PeliculasHome";
 import { RootState } from "@store/store";
 
-const initialState: IPeliculas = {
-  imagen: "",
-  titulo: "",
-  duracion: "",
-  sinopsis: "",
-  generos: "",
-  rating: "",
-  fecha_lanzamiento: "",
-  director: "",
-  actores: "",
-  puntuaciones: 0,
-  trailer: "",
-  status: "",
-  _id: "",
+export interface IPelicula {
+  imagen: string;
+  titulo: string;
+  duracion: string;
+  sinopsis: string;
+  generos: string;
+  rating: string;
+  fecha_lanzamiento: string;
+  director: string;
+  actores: string;
+  puntuaciones: 0;
+  trailer: string;
+  status: string;
+  _id: string;
+}
+
+const initialState: { peliculas: IPelicula[] } = {
+  peliculas: [],
 };
 
 export const favoriteSlice = createSlice({
   name: "fav",
   initialState,
   reducers: {
-    setFavoriteMovie: (state, action: PayloadAction<IPeliculas>) => {
-      state.imagen = action.payload.imagen;
-      state.titulo = action.payload.titulo;
-      state.duracion = action.payload.duracion;
-      state.sinopsis = action.payload.sinopsis;
-      state.generos = action.payload.generos;
-      state.rating = action.payload.rating;
-      state.fecha_lanzamiento = action.payload.fecha_lanzamiento;
-      state.director = action.payload.director;
-      state.actores = action.payload.actores;
-      state.puntuaciones = action.payload.puntuaciones;
-      state.trailer = action.payload.trailer;
-      state.status = action.payload.status;
-      state._id = action.payload._id;
+    setFavoriteMovie: (state, action: PayloadAction<IPelicula>) => {
+      const pelicula: IPelicula = action.payload;
+
+      const index = state.peliculas.findIndex((i) => {
+        return i._id === pelicula._id;
+      });
+
+      if (index < 0) {
+        state.peliculas = [...state.peliculas, pelicula];
+      }
+    },
+    removeFromFavorite: (state, action: PayloadAction<IPelicula>) => {
+      const pelicula: IPelicula = action.payload;
+
+      const index = state.peliculas.findIndex((i) => {
+        return i._id === pelicula._id;
+      });
+
+      // copiando el arreglo original
+      let nuevoFavorito = [...state.peliculas];
+
+      if (index >= 0) {
+        nuevoFavorito.splice(index, 1);
+      }
+
+      // se reemplaza el nueevo valor del arreglo
+      state.peliculas = nuevoFavorito;
     },
   },
 });
 
-export const { setFavoriteMovie } = favoriteSlice.actions;
-export const selectFavorites = (state: RootState) => state.favorite;
+export const { setFavoriteMovie, removeFromFavorite } = favoriteSlice.actions;
+export const selectFavorites = (state: RootState) => state.favorite.peliculas;
 export default favoriteSlice.reducer;
