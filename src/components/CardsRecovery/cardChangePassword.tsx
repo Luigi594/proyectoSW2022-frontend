@@ -22,7 +22,6 @@ function ChangePasswordCard()
         event.preventDefault();
         const email = localStorage.getItem('email');
         changepassword({password, confirmpassword, email}).then((resultado) => {
-            console.log(resultado);
             if("data" in resultado){
                 Swal.fire({
                     title: "Contraseña cambiada",

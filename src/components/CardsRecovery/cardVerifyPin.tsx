@@ -12,11 +12,9 @@ function VerifyPin()
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log(pin);
         event.preventDefault();
         const pinEnviado = localStorage.getItem('pin');
         if (pinEnviado === pin) {
-            console.log('Correcto');
             Swal.fire({
                 title: "Excelente!",
                 text: "Código de verificación correcto",
@@ -26,7 +24,6 @@ function VerifyPin()
                 Navigator('/changePassword');
             });
         } else {
-            console.log('Incorrecto');
             Swal.fire({
                 title: "Error",
                 text: "Código de verificación incorrecto",

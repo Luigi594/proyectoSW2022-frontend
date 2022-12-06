@@ -23,11 +23,11 @@ function LoginCard()
     
     
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log(email, password);
         event.preventDefault();
         login({ email, password }).then((result) => {
             const data  = result;
             if ("data" in data) {
+                dispatch(setSecData(data.data));
                 console.log(dispatch(setSecData(data.data)));
                 Swal.fire({
                     title: "Bienvenido",

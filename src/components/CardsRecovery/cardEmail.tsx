@@ -17,7 +17,6 @@ function SentEmailCard()
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log(email);
         event.preventDefault();
         const pin = Math.floor(Math.random() * 1000000);
         sent({ email, pin }).then((result) => {
