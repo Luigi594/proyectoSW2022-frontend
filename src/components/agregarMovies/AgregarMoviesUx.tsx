@@ -13,13 +13,13 @@ const AgregarMoviesUx = ({
 }: AgregarMoviesUx) => {
   return (
   <div className="flex items-center justify-center p-12">
-        
   <div className="mx-auto w-full max-w-[550px]">
+    
     <form action="https://formbold.com/s/FORM_ID" method="POST">
       <div className="mb-5">
         <label
           //for="name"
-          className="mb-3 block text-base font-medium text-[#07074D]"
+          className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Titulo Pelicula
         </label>
@@ -39,7 +39,7 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
           //for="name"
-          className="mb-3 block text-base font-medium text-[#07074D]"
+          className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Imagen Pelicula
         </label>
@@ -59,7 +59,7 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
           //for="duración"
-          className="mb-3 block text-base font-medium text-[#07074D]"
+          className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Duracion
         </label>
@@ -79,7 +79,7 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
           //for="message"
-          className="mb-3 block text-base font-medium text-[#07074D]"
+          className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Sinopsis
         </label>
@@ -92,23 +92,27 @@ const AgregarMoviesUx = ({
             onChangeHandler(e.target.name, e.target.value);
           }}
           placeholder="Ingrese la sinopsis de la pelicula"
-          className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          className="w-full resize-none rounded-md border border-[#C0C0C0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         ></textarea>
       </div>
 
       <div className="mb-5">
         <label
         //for="Genero"
-        className="mb-3 block text-base font-medium text-[#07074D]"
+        className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Genero
         </label>
-        <select className="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
-          <option>Eligir un genero</option>
-          <option>Terror</option>
-          <option>Comedia</option>
-          <option>Romance</option>
-          <option>Misterio</option>
+        <select className="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="generos" name="generos"
+        onChange={(e) => {
+          onChangeHandler(e.target.name, e.target.value);
+        }}>
+          <option >Eligir un genero</option>
+          <option value="Terror">Terror</option>
+          <option value="Comedia">Comedia</option>
+          <option value="Romance">Romance</option>
+          <option value="Misterio">Misterio</option>
+          
         </select>
         <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
           <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -118,18 +122,20 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
         //for="rating"
-        className="mb-3 block text-base font-medium text-[#07074D]"
+        className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Rating
         </label>
-        <select className="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
+        <select className="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="rating" name="rating"
+        onChange={(e) => {
+          onChangeHandler(e.target.name, e.target.value);
+        }}>
           <option>Elegir Rating</option>
-          <option>G</option>
-          <option>PG</option>
-          <option>PG-13</option>
-          <option>R</option>
+          <option value="G">G</option>
+          <option value="PG">PG</option>
+          <option value="PG-13">PG-13</option>
+          <option value="R">R</option>
         </select>
-        value={form.rating}
         <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
           <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
@@ -138,14 +144,18 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
           //for="fecha_lanzamiento"
-          className="mb-3 block text-base font-medium text-[#07074D]"
+          className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Fecha Lanzamiento
         </label>
         <input
-          type="datetime-local"
+          type="date"
           name="fecha_lanzamiento"
           id="fecha_lanzamiento"
+          value={String(form.fecha_lanzamiento)}
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}
           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
@@ -153,7 +163,7 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
           //for="director"
-          className="mb-3 block text-base font-medium text-[#07074D]"
+          className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Director
         </label>
@@ -173,7 +183,7 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
           //for="actores"
-          className="mb-3 block text-base font-medium text-[#07074D]"
+          className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Actores
         </label>
@@ -193,7 +203,7 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
           //for="guest"
-          className="mb-3 block text-base font-medium text-[#07074D]"
+          className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Puntuacion General de la pelicula
         </label>
@@ -215,13 +225,13 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
           //for="trailes"
-          className="mb-3 block text-base font-medium text-[#07074D]"
+          className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Trailer
         </label>
         <input
           type="text"
-          name="trailes"
+          name="trailer"
           id="trailer"
           value={form.trailer}
           onChange={(e) => {
@@ -235,15 +245,18 @@ const AgregarMoviesUx = ({
       <div className="mb-5">
         <label
         //for="status"
-        className="mb-3 block text-base font-medium text-[#07074D]"
+        className="mb-3 block text-base font-medium text-[#C0C0C0]"
         >
           Estado del trailer
         </label>
-        <select className="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
+        <select className="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="estado" name="estado" 
+          onChange={(e) => {
+            onChangeHandler(e.target.name, e.target.value);
+          }}>
           <option>Elegir estado</option>
-          <option>ACT</option>
-          <option>INA</option>
-          <option>BLQ</option>
+          <option value="ACT">ACT</option>
+          <option value="INA">INA</option>
+          <option value="BLQ">BLQ</option>
         </select>
         <div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
           <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>

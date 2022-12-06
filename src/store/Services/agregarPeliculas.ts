@@ -44,7 +44,7 @@ export interface IGetAllMoviesResponse {
 export const MoviesApi = createApi({
   reducerPath: "MoviesApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.REACT_APP_API_BASE_URL}/Movie`,
+    baseUrl: `${process.env.REACT_APP_API_BASE_URL}/movies`,
     prepareHeaders: (headers, {getState}) => {
       headers.set("apikey", process.env.REACT_APP_API_KEY as string);
       const token = (getState() as RootState).sec.token;
@@ -68,7 +68,7 @@ export const MoviesApi = createApi({
     newMovie: builder.mutation({
       query: (body:INewMovie)=>{
         return {
-          url: "new",
+          url: "/new",
           method: "POST",
           body
         }

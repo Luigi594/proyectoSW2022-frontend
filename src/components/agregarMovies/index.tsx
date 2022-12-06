@@ -28,15 +28,15 @@ const MovieNew = () => {
   const onSubmitHandler = async () => {
     try {
       const data = await newMovie(form).unwrap();
-      console.log(data);
-      Navigate("/movie");
+      console.log(form);
+      Navigate("/Home");
     } catch (error) {
       console.log(error);
     }
   }
   const onCancelHandler = () => {
     console.log('cancel');
-    Navigate("/movie");
+    Navigate("/Home");
   }
   return (
     <AgregarMovieUx
