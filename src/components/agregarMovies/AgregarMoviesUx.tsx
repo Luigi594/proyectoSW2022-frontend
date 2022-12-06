@@ -1,7 +1,3 @@
-//import Page from "@components/Page";
-//import { DateField, Field, FieldSelect } from "@components/InputField";
-//import ActionField from "@components/ActionField";
-//import { PrimaryButton, Button } from "@components/Buttons";
 import { INewMovie } from "@store/Services/agregarPeliculas";
 export interface AgregarMoviesUx {
   form: INewMovie;
@@ -16,39 +12,10 @@ const AgregarMoviesUx = ({
   onCancelHandler,
 }: AgregarMoviesUx) => {
   return (
-    <div className="flex items-center justify-center p-12">
+  <div className="flex items-center justify-center p-12">
         
   <div className="mx-auto w-full max-w-[550px]">
     <form action="https://formbold.com/s/FORM_ID" method="POST">
-    <div className="mb-6 pt-4">
-        <label className="mb-5 block text-xl font-semibold text-[#07074D]">
-          Imagen Pelicula
-        </label>
-
-        <div className="mb-8">
-          <input type="file" name="file" id="file" className="sr-only" />
-          <label
-            //for="file"
-            className="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
-          >
-            <div>
-              <span className="mb-2 block text-xl font-semibold text-[#07074D]">
-                Drop files here
-              </span>
-              <span className="mb-2 block text-base font-medium text-[#6B7280]">
-                Or
-              </span>
-              <span
-                className="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]"
-              >
-                Browse
-              </span>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      
       <div className="mb-5">
         <label
           //for="name"
@@ -61,6 +28,22 @@ const AgregarMoviesUx = ({
           name="name"
           id="name"
           placeholder="Black Panther: Wakanda Forever"
+          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+      </div>
+
+      <div className="mb-5">
+        <label
+          //for="name"
+          className="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Imagen Pelicula
+        </label>
+        <input
+          type="text"
+          name="imagen"
+          id="imagen"
+          placeholder="Link Imagen"
           className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
         />
       </div>
@@ -233,12 +216,12 @@ const AgregarMoviesUx = ({
         </div>
       </div>
 
-      <div>
-        <button
-          className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none"
-        >
-          Agregar
-        </button>
+      <div className="mb-5">
+        <button onClick={(e)=>{
+          e.preventDefault();
+          e.stopPropagation();
+          onSubmitHandler();
+        }}className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">Guardar</button>
       </div>
     </form>
   </div>

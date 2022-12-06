@@ -2,6 +2,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes as Switch,
+  
 } from "react-router-dom";
 
 import Home from "@views/Home";
@@ -10,6 +11,7 @@ import Navbar from "@components/navbar";
 import NotFound from "@views/NotFound";
 import DetailsMovie from "@components/DetailsMovie";
 import MovieList from "@views/MovieList";
+import MovieNew from "@components/agregarMovies";
 
 const Routes = () => {
   return (
@@ -17,6 +19,7 @@ const Routes = () => {
       <Navbar />
       <Switch>
         <Route path="/home" element={<Home />} />
+        <Route path="/agg" element={<MovieNew />}/>
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/detail/:id" element={<DetailsMovie />} />
         <Route path="/movielist" element={<MovieList />} />

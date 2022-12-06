@@ -65,10 +65,6 @@ export const MoviesApi = createApi({
       query: (id: string) => `byindex/${id}`,
       providesTags: ["Movie"]
     }),
-    allMovieAdmin: builder.query({
-      query: ()=>"/all",
-      providesTags: ["Movie"]
-    }),
     newMovie: builder.mutation({
       query: (body:INewMovie)=>{
         return {
@@ -82,4 +78,4 @@ export const MoviesApi = createApi({
   })
 });
 
-export const { useAllMovieQuery, useMovieByIdQuery, useAllMovieAdminQuery , useNewMovieMutation } = MoviesApi;
+export const { useAllMovieQuery, useMovieByIdQuery, useNewMovieMutation } = MoviesApi;
