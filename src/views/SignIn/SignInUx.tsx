@@ -66,7 +66,7 @@ const SignInUx = ({
   }
 
   return (
-    <div className="z-40 max-h-screen flex justify-center  -translate-y-6 items-center bg-gradient-to-br from-purple-600 to-blue-500 ">
+    <div className="z-40 max-h-screen flex justify-center  -translate-y-8 items-center ">
       <form>
         <div className=" z-30 flex flex-col mt-10 pb-15  translate-y-8  bg-white rounded-lg border border-green-200 shadow-lg shadow-green-300  ">
           <h3 className="m-4 text-center text-dark font-medium rounded-lg text-base">
