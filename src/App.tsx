@@ -7,11 +7,12 @@ import Routes from "./Router";
 
 function App() {
   return (
-    <div className="App">
+    /*<div className="App">
       <div>
         <Routes />
       </div>
-    </div>
+    </div>*/
+    <Routes/>
   );
 }
 
