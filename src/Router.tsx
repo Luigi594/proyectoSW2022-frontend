@@ -17,27 +17,83 @@ import Login from "@views/Login/login";
 import SentEmail from "@views/Login/sentEmail";
 import VerifyPin from "@views/Login/verifyPin";
 import ChangePassword from "@views/Login/changePassword";
+import PrivateRoute from "@components/Private/privateRoute";
 
 const Routes = () => {
   return (
     <Router>
       <Navbar />
       <Switch>
-        <Route path="/home" element={<Home />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/detail/:id" element={<DetailsMovie />} />
-        <Route path="/movielist" element={<MovieList />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/userDashboard" element={<User />} />
-        <Route path="/userDashboard/detail/:id" element={<UserDetail />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/userDashboard/update/:id" element={<UserUpdate />} />
-        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/sentEmail" element={<SentEmail />} />
         <Route path="/verifyPin" element={<VerifyPin />} />
         <Route path="/changePassword" element={<ChangePassword />} />
+
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute allowedRoles={["public"]}>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/favorites"
+          element={
+            <PrivateRoute allowedRoles={["public"]}>
+              <Favorites />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/detail/:id"
+          element={
+            <PrivateRoute allowedRoles={["public"]}>
+              <DetailsMovie />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/movielist"
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <MovieList />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/userDashboard"
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <User />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/userDashboard/detail/:id"
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <UserDetail />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/userDashboard/update/:id"
+          element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <UserUpdate />
+            </PrivateRoute>
+          }
+        />
+
+        <Route path="*" element={<NotFound />} />
       </Switch>
     </Router>
   );

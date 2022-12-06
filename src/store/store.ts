@@ -16,13 +16,13 @@ export const store = configureStore({
     favorite: favoriteSlice.reducer,
     [securityApi.reducerPath]: securityApi.reducer,
     [peliculasApi.reducerPath]: peliculasApi.reducer,
-    [usersApi.reducerPath]: usersApi.reducer
+    [usersApi.reducerPath]: usersApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       securityApi.middleware,
       peliculasApi.middleware,
-      usersApi.middleware
+      usersApi.middleware,
     ]),
   preloadedState: preLoadedState,
 });

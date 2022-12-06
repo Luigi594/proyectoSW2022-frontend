@@ -5,6 +5,7 @@ interface SecState {
   name: string;
   email: string;
   token: string;
+  roles: string[];
   _id: string;
 }
 
@@ -12,6 +13,7 @@ const initialState: SecState = {
   name: "",
   email: "",
   token: "",
+  roles: [],
   _id: "",
 };
 
@@ -23,13 +25,15 @@ export const secSlice = createSlice({
       state.name = action.payload.name;
       state.email = action.payload.email;
       state.token = action.payload.token;
+      state.roles = action.payload.roles;
       state._id = action.payload._id;
     },
     resetSecData: (state) => {
-      state.name = "";
-      state.email = "";
-      state.token = "";
-      state._id = "";
+      state.name = initialState.name;
+      state.email = initialState.email;
+      state.token = initialState.token;
+      state.roles = initialState.roles;
+      state._id = initialState._id;
     },
   },
 });
